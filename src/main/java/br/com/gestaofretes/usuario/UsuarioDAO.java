@@ -53,6 +53,19 @@ public class UsuarioDAO {
     /**
      * Insere um novo usuário com e-mail e senha criptografada.
      */
+    /**
+     * Atualiza o hash de senha de um usuário pelo e-mail.
+     */
+    public void atualizarSenha(String email, String novaSenhaHash) throws SQLException {
+        String sql = "UPDATE usuario SET senha_hash = ? WHERE email = ?";
+        try (Connection conn = ConexaoDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, novaSenhaHash);
+            ps.setString(2, email);
+            ps.executeUpdate();
+        }
+    }
+
     public void inserir(String email, String senhaHash, String nomeCompleto) throws SQLException {
         String sql = "INSERT INTO usuario (login, email, senha_hash, nome_completo) VALUES (?, ?, ?, ?)";
         try (Connection conn = ConexaoDB.getConnection();

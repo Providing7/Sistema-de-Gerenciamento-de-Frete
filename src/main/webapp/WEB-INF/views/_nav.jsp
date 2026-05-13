@@ -43,17 +43,15 @@
 
     <div class="nav-section-title">Relat&oacute;rios</div>
 
-    <a href="<%= ctx %>/relatorios/fretes-aberto" target="_blank" class="<%= uri.contains("/relatorios") ? "active" : "" %>">
+    <a href="<%= ctx %>/relatorios/fretes-aberto" target="_blank" class="<%= uri.contains("/relatorios/fretes-aberto") ? "active" : "" %>">
       <i class="bi bi-bar-chart-line nav-icon"></i> Fretes em Aberto
     </a>
     <a href="<%= ctx %>/relatorios/romaneio" class="<%= uri.contains("/relatorios/romaneio") ? "active" : "" %>">
       <i class="bi bi-printer nav-icon"></i> Romaneio de Carga
     </a>
-    
-    <a class="nav-link" href="${pageContext.request.contextPath}/relatorios/faturamento">
-  	  <i class="bi bi-graph-up-arrow"></i>
-  		<span>Faturamento</span>
-	</a>
+    <a href="<%= ctx %>/relatorios/faturamento" class="<%= uri.contains("/relatorios/faturamento") ? "active" : "" %>">
+      <i class="bi bi-graph-up-arrow nav-icon"></i> Faturamento
+    </a>
   </nav>
 
   <div class="sidebar-footer">

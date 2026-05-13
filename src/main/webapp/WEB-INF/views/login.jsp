@@ -61,6 +61,12 @@
         <div class="login-field">
           <label for="senha">Senha</label>
           <input type="password" id="senha" name="senha" placeholder="Sua senha" required />
+          <div style="text-align:right;margin-top:4px;">
+            <a href="${pageContext.request.contextPath}/esqueceu-senha"
+               style="font-size:12px;color:var(--gray-500);text-decoration:none;">
+              Esqueceu a senha?
+            </a>
+          </div>
         </div>
         <button class="login-submit" type="submit">
           <i class="bi bi-box-arrow-in-right"></i> Entrar
