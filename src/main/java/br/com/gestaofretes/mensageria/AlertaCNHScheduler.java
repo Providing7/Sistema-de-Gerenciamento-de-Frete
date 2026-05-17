@@ -25,7 +25,12 @@ public class AlertaCNHScheduler implements ServletContextListener {
 
     private static final Logger log = Logger.getLogger(AlertaCNHScheduler.class.getName());
 
-    private static final int DIAS_ALERTA = 30;
+    /**
+     * Dias de antecedência monitorados.
+     * O sistema exibe 4 níveis: VENCIDA | CRÍTICO (0-30d) | ATENÇÃO (31-60d) | AVISO (61-90d).
+     * Por isso monitoramos até 90 dias.
+     */
+    private static final int DIAS_ALERTA = 90;
 
     private ScheduledExecutorService scheduler;
     private Thread                   consumerThread;
@@ -72,7 +77,7 @@ public class AlertaCNHScheduler implements ServletContextListener {
                 return;
             }
 
-            log.info("[SCHEDULER] " + criticos.size() + " CNH(s) crítica(s) — publicando na fila...");
+            log.info("[SCHEDULER] " + criticos.size() + " motorista(s) com CNH em alerta — publicando na fila...");
 
             for (Motorista m : criticos) {
                 int diasRestantes = (int) ChronoUnit.DAYS.between(

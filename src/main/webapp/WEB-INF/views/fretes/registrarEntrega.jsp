@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Registrar Entrega &mdash; Gestão de Fretes</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 <div class="app-layout">
@@ -56,7 +57,7 @@
           </div>
         </div>
         <div style="display:flex;gap:12px;margin-top:8px;">
-          <button type="submit" class="btn btn-primary" style="background:var(--success);">&#10004; Confirmar Entrega</button>
+          <button type="submit" class="btn btn-success">&#10004; Confirmar Entrega</button>
           <a href="${pageContext.request.contextPath}/fretes?acao=detalhe&id=<%= frete != null ? frete.getId() : "" %>" class="btn btn-secondary">Cancelar</a>
         </div>
       </form>

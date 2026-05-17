@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalhe do Frete &mdash; FretesTMS</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 <div class="app-layout">
@@ -180,9 +181,9 @@
 
       <!-- Histórico de ocorrências -->
       <div class="card">
-        <div style="padding:14px 20px;border-bottom:1px solid var(--gray-200);">
-          <span style="font-size:13px;font-weight:600;color:var(--gray-800);">
-            <i class="bi bi-clock-history" style="margin-right:6px;color:var(--gray-500);"></i>
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border);">
+          <span style="font-size:13px;font-weight:600;color:var(--text);">
+            <i class="bi bi-clock-history" style="margin-right:6px;color:var(--text-muted);"></i>
             Hist&oacute;rico de Ocorr&ecirc;ncias
           </span>
         </div>

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novo Frete &mdash; Gestão de Fretes</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="${pageContext.request.contextPath}/js/masks.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -230,13 +231,13 @@
               <!-- Preview calculado em tempo real (só informativo) -->
               <div class="form-group">
                 <label>Valor ICMS (calculado)</label>
-                <div style="padding:8px 12px;background:var(--gray-100);border-radius:var(--radius);font-size:14px;font-weight:600;color:var(--gray-700);">
+                <div style="padding:8px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;font-weight:600;color:var(--text-dim);">
                   <span id="previewIcms">R$ 0.00</span>
                 </div>
               </div>
               <div class="form-group">
                 <label>Valor Total (calculado)</label>
-                <div style="padding:8px 12px;background:var(--primary-light);border-radius:var(--radius);font-size:14px;font-weight:700;color:var(--primary-dark);">
+                <div style="padding:8px 12px;background:var(--primary-light);border:1px solid rgba(59,130,246,0.25);border-radius:var(--radius);font-size:14px;font-weight:700;color:var(--primary);">
                   <span id="previewTotal">R$ 0.00</span>
                 </div>
               </div>
@@ -251,7 +252,7 @@
                 <label>Data Prevista de Entrega *</label>
                 <input type="date" id="dataPrevisaoEntrega" name="dataPrevisaoEntrega" required
                        value="<%= request.getAttribute("formDataPrevisaoEntrega") != null ? request.getAttribute("formDataPrevisaoEntrega") : "" %>" />
-                <span style="font-size:11px;color:var(--gray-500);">Deve ser posterior à data de hoje.</span>
+                <span style="font-size:11px;color:var(--text-muted);">Deve ser posterior à data de hoje.</span>
               </div>
             </div>
           </div>
@@ -274,8 +275,8 @@
 (function () {
   var campo = document.getElementById('<%= erroCampoVal %>');
   if (!campo) return;
-  campo.style.outline = '2px solid #e74c3c';
-  campo.style.boxShadow = '0 0 0 3px rgba(231,76,60,0.18)';
+  campo.style.outline = '2px solid var(--cnh-vencida, #ff2d55)';
+  campo.style.boxShadow = '0 0 0 3px rgba(255,45,85,0.18)';
   campo.scrollIntoView({ behavior: 'smooth', block: 'center' });
   campo.focus();
 })();
