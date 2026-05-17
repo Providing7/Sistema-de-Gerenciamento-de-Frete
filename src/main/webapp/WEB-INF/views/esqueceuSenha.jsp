@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Esqueceu a senha &mdash; FretesTMS</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 <div class="login-page">
@@ -55,11 +56,11 @@
         </div>
 
         <% if (request.getAttribute("linkRedefinicao") != null) { %>
-          <div style="background:var(--gray-100);border:1px solid var(--gray-200);
+          <div style="background:var(--surface-2);border:1px solid var(--border);
                       border-radius:var(--radius-md);padding:16px;margin-bottom:20px;">
-            <p style="font-size:13px;color:var(--gray-600);margin-bottom:8px;">
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">
               <i class="bi bi-link-45deg"></i>
-              <strong>Link de redefinição</strong> (válido por 1 hora):
+              <strong style="color:var(--text);">Link de redefinição</strong> (válido por 1 hora):
             </p>
             <a href="${linkRedefinicao}" style="word-break:break-all;color:var(--primary);font-size:13px;">
               ${linkRedefinicao}

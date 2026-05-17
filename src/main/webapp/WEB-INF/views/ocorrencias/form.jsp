@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Nova Ocorr&ecirc;ncia &mdash; Gestão de Fretes</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="${pageContext.request.contextPath}/js/masks.js"></script>
   <script>
     function toggleCampos() {
@@ -101,7 +102,7 @@
               <div class="form-group">
                 <label>Data e Hora *</label>
                 <input type="datetime-local" id="dataHora" name="dataHora" required />
-                <span style="font-size:11px;color:var(--gray-500);">Não pode ser no futuro nem anterior a 2 anos atrás.</span>
+                <span style="font-size:11px;color:var(--text-muted);">Não pode ser no futuro nem anterior a 2 anos atrás.</span>
               </div>
               <div class="form-group">
                 <label>Munic&iacute;pio</label>

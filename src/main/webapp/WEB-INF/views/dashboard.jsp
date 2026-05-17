@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard &mdash; FretesTMS</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 </head>
 <body>
@@ -21,8 +21,8 @@
         <span class="topbar-breadcrumb">Vis&atilde;o geral</span>
       </div>
       <div class="topbar-right">
-        <span style="font-size:13px;color:var(--gray-500);">
-          Ol&aacute;, <strong style="color:var(--gray-800);">${sessionScope.usuarioLogado}</strong>
+        <span style="font-size:13px;color:var(--text-muted);">
+          Ol&aacute;, <strong style="color:var(--text);">${sessionScope.usuarioLogado}</strong>
         </span>
       </div>
     </header>
@@ -101,7 +101,7 @@
           </strong>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;">
             <% if (qtdVencidas > 0) { %>
-            <span class="badge-cnh-vencida"><%= qtdVencidas %> JÁ VENCIDA<%= qtdVencidas > 1 ? "S" : "" %></span>
+      <span class="badge-cnh-vencida"><%= qtdVencidas %> J&Aacute; VENCIDA<%= qtdVencidas > 1 ? "S" : "" %></span>
             <% } %>
             <% if (qtdAVencer > 0) { %>
             <span class="badge-cnh-atencao"><%= qtdAVencer %> A VENCER</span>
@@ -135,7 +135,7 @@
         <div class="chart-card chart-card-wide">
           <div class="chart-card-title" style="display:flex;align-items:center;justify-content:space-between;">
             <span>Faturamento Mensal (R$) &mdash; &uacute;ltimos <%= request.getAttribute("mesesFaturamento") %> meses</span>
-            <select id="seletorMeses" style="font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid #ddd;cursor:pointer;">
+            <select id="seletorMeses" style="font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;">
               <option value="3"  <%= "3" .equals(String.valueOf(request.getAttribute("mesesFaturamento"))) ? "selected" : "" %>>3 meses</option>
               <option value="6"  <%= "6" .equals(String.valueOf(request.getAttribute("mesesFaturamento"))) ? "selected" : "" %>>6 meses</option>
               <option value="9"  <%= "9" .equals(String.valueOf(request.getAttribute("mesesFaturamento"))) ? "selected" : "" %>>9 meses</option>
@@ -224,16 +224,16 @@ if (statusLabels.length > 0) {
       labels: statusLabels.map(l => statusNomes[l] || l),
       datasets: [{
         data: statusData,
-        backgroundColor: statusLabels.map(l => statusCores[l] || '#BDC3C7'),
+        backgroundColor: statusLabels.map(l => statusCores[l] || '#475569'),
         borderWidth: 2,
-        borderColor: '#fff'
+        borderColor: '#0c1120'
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
-        legend: { position: 'right', labels: { font: { size: 12 }, padding: 12 } },
+        legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 12 }, padding: 12 } },
         tooltip: {
           callbacks: {
             label: ctx => ' ' + (statusNomes[statusLabels[ctx.dataIndex]] || statusLabels[ctx.dataIndex]) + ': ' + ctx.raw
@@ -253,11 +253,11 @@ if (fatLabels.length > 0) {
       datasets: [{
         label: 'Faturamento (R$)',
         data: fatData,
-        backgroundColor: 'rgba(39, 174, 96, 0.75)',
-        borderColor: '#27AE60',
+        backgroundColor: 'rgba(59,130,246,0.5)',
+        borderColor: '#3b82f6',
         borderWidth: 1.5,
         borderRadius: 6,
-        hoverBackgroundColor: 'rgba(39, 174, 96, 0.95)'
+        hoverBackgroundColor: 'rgba(59,130,246,0.8)'
       }]
     },
     options: {
@@ -274,12 +274,10 @@ if (fatLabels.length > 0) {
       scales: {
         y: {
           beginAtZero: true,
-          ticks: {
-            callback: v => 'R$ ' + v.toLocaleString('pt-BR')
-          },
-          grid: { color: '#f0f0f0' }
+          ticks: { color: '#64748b', callback: v => 'R$ ' + v.toLocaleString('pt-BR') },
+          grid: { color: 'rgba(255,255,255,0.05)' }
         },
-        x: { grid: { display: false } }
+        x: { ticks: { color: '#64748b' }, grid: { display: false } }
       }
     }
   });
@@ -309,7 +307,7 @@ if (rotas.length > 0) {
 
   const mapa = L.map('mapaRotas').setView([-15.0, -50.0], 4);
   L.tileLayer(
-    'https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_TOKEN,
+    'https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_TOKEN,
     {
       attribution: '© <a href="https://www.mapbox.com/">Mapbox</a> © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
       tileSize: 512,
@@ -348,7 +346,7 @@ if (rotas.length > 0) {
     });
   });
 } else {
-  mapaEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--gray-400);font-size:14px;">Nenhuma rota cadastrada ainda.</div>';
+  mapaEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:14px;">Nenhuma rota cadastrada ainda.</div>';
 }
 </script>
 </body>
