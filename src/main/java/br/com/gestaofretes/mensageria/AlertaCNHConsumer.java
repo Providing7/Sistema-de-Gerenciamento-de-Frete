@@ -30,19 +30,30 @@ public class AlertaCNHConsumer implements Runnable {
     }
 
     private void processarAlerta(AlertaCNHMessage msg) {
-        String nivel = msg.getDiasRestantes() <= 15 ? "CRITICO" :
-                       msg.getDiasRestantes() <= 30 ? "ATENCAO" : "AVISO";
+        /*
+         * Classificação de nível — alinhada com a tela de Alertas de CNH:
+         *   VENCIDA  → dias < 0  (já expirou)
+         *   CRITICO  → 0 a 30 dias
+         *   ATENCAO  → 31 a 60 dias
+         *   AVISO    → 61 a 90 dias
+         */
+        int dias = msg.getDiasRestantes();
 
-        String icone = "CRITICO".equals(nivel) ? "🔴 CRÍTICO" :
-                       "ATENCAO".equals(nivel) ? "🟡 ATENÇÃO" : "🟢 AVISO";
+        String nivel = dias < 0  ? "VENCIDA" :
+                       dias <= 30 ? "CRITICO" :
+                       dias <= 60 ? "ATENCAO" : "AVISO";
+
+        String icone = "VENCIDA".equals(nivel)  ? "🔴 VENCIDA" :
+                       "CRITICO".equals(nivel)  ? "🟠 CRÍTICO" :
+                       "ATENCAO".equals(nivel)  ? "🟡 ATENÇÃO" : "🟢 AVISO";
 
         log.warning(String.format(
-            "[CONSUMER] %s | Motorista: %-30s | CNH: %-15s | Vence: %s | Dias restantes: %d",
+            "[CONSUMER] %s | Motorista: %-30s | CNH: %-15s | Vence: %s | Dias: %d",
             icone,
             msg.getMotoristaNome(),
             msg.getCnhNumero(),
             msg.getCnhValidade(),
-            msg.getDiasRestantes()
+            dias
         ));
 
         try {
